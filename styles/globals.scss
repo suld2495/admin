@@ -5,3 +5,8 @@ $etc-color: hsl(0, 0, 24);
 
 /* 폰트 사이즈 */
 // $admin-title
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
