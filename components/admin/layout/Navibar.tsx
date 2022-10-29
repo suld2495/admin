@@ -1,4 +1,4 @@
-import Menu from '../common/Menu/Menu';
+import Menu from '../common/menu/Menu';
 import styled from './navibar.module.scss';
 
 export default function Navibar() {

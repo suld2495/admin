@@ -22,7 +22,7 @@ const MenuItem = ({ title, link, children }: Menu) => {
         </>
       )}
 
-      {children && (
+      {!children && (
         <Link href={link!}>{title}</Link>
       )}
     </li>
