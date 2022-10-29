@@ -1,16 +1,26 @@
+import Link from 'next/link';
+import React from 'react';
+import { composeClasses } from '../../../utils/composeClasses';
+import { CommonProps } from '../type';
 import styled from './button.module.scss';
 
-interface ButtonProps {
+type ButtonProps = CommonProps & {
   children?: React.ReactNode;
   href?: string;
 }
 
-export default function Button({ children, href }: ButtonProps) {
-  const ButtonType: React.ElementType = href ? 'a' : 'button';
-
+export default function Button({ children, href, unStyled = false, className = '' }: ButtonProps) {
+  const selectClasses = composeClasses(className, unStyled ? '' : styled.button);
+  
   return (
     <>
-      <ButtonType className={styled.button}>{children}</ButtonType>
+      {href ? (
+        <Link href={href}>
+          <a className={selectClasses}>{children}</a>
+        </Link>
+      ) : (
+        <button className={selectClasses}>{children}</button>
+      )}
     </>
   )
-}
+}   
