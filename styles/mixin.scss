@@ -1,0 +1,26 @@
+@mixin button_type_common($padding: 8px 28px) {
+  display: inline-block;
+  padding: $padding;
+  border-radius: $component-border-radius;
+  font-size: $component-font-size;
+  cursor: pointer;
+  line-height: 1;
+  text-decoration: none;  
+}
+
+@mixin virtual_element($position: absolute) {
+  content: '';
+  position: $position;
+  display: block;
+}
+
+@mixin vertical_middle {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@mixin flex_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
