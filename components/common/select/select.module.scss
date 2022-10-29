@@ -1,0 +1,55 @@
+@import '@/styles/globals.scss';
+
+$select-color: #bfbfbf;
+
+.select {
+  position: relative;
+  display: inline-flex;
+
+  span {
+    @include button_type_common(8px 0 8px 18px);
+
+    position: relative;
+    width: 120px;
+    border: 2px solid #f9f9f9;
+    background-color: #fff;
+    color: $select-color;
+
+    &::after {
+      @include virtual_element;
+      @include vertical_middle;
+
+      width: 0;
+      height: 0;
+      border-bottom: 0 solid transparent;
+      border-top: 6px solid #848277;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+
+      right: 20px;
+    }
+  }
+
+  input {
+    display: none;
+  }
+
+  .options {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    transform: translateY(100%);
+    padding: 8px 0;
+    border-radius: 4px;
+    box-shadow: $box-shadow;
+    transition: opacity .3s ease;
+    opacity: 0;
+
+    .option {
+      display: flex;
+      align-items: center;
+      padding: 10px 16px;
+      font-size: $component-font-size;
+    }
+  }
+}
