@@ -9,10 +9,11 @@ interface OptionProps {
 }
 
 export default function Option(props: OptionProps) {
-  const { value, setValue } = React.useContext(SelectContext);
+  const { value, setValue, toggle } = React.useContext(SelectContext);
   const handleClick = useCallback(() => {
     setValue(props.value);
-  }, [setValue, props.value]);
+    toggle(false);
+  }, [setValue, props.value, toggle]);
   const classes = composeClasses(styled[props.value === value ? 'active' : ''], styled.option);
 
   return (

@@ -6,12 +6,16 @@ import Option from './Option';
 
 interface ContextValue {
   value: string;
-  setValue: React.Dispatch<React.SetStateAction<ContextValue['value']>>;
+  open: boolean;
+  setValue: (value: ContextValue['value']) => void;
+  toggle: (open: ContextValue['open']) => void;
 }
 
 const initialValue: ContextValue = {
   value: '',
-  setValue() {}
+  open: false,
+  setValue() {},
+  toggle() {},
 };
 
 export const SelectContext = React.createContext(initialValue);
@@ -30,17 +34,21 @@ export default function Select({
   name 
 }: SelectProps) {
   const [value, setValue] = React.useState(defaultValue);
-  const selectClasses = composeClasses(className, unStyled ? '' : styled.select);
+  const [open, toggle] = React.useState(false);
+  const selectClasses = composeClasses(className, unStyled ? '' : styled.select, open ? styled.open: '');
+
+  const handleClick = React.useCallback(() => {
+    toggle(!open);
+  }, [open]);
 
   return (
     <>
-      <SelectContext.Provider value={{ value, setValue }}>
+      <SelectContext.Provider value={{ value, setValue, open, toggle }}>
         <div className={selectClasses}>
-          <span>{value}</span>
+          <span onClick={handleClick}>{value}</span>
           <div className={styled.options}>
             {children}
           </div>
-          
           <input name={name} defaultValue={value} />
         </div>
       </SelectContext.Provider>
