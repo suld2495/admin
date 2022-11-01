@@ -32,8 +32,8 @@ const TableRow = ({ columns, row }: { columns: Column<RowData>[], row: RowData }
   return (
     <>
       <tr className={styled.body}>
-        {columns.map(({ field }) => (
-          <td key={field}>{row[field]}</td>
+        {columns.map(({ field, align }) => (
+          <td className={composeClasses(styled[align || 'left'])} key={field}>{row[field]}</td>
         ))}
       </tr>
     </>
@@ -58,10 +58,10 @@ type TableProps<RowData extends object> = CommonProps & {
 }
 
 export default function Table({ data, columns, className = '', unStyled = false }: TableProps<RowData>) {
-  const tableClasses = composeClasses(className, unStyled ? '' : 'table');
+  const tableClasses = composeClasses(className, unStyled ? '' : styled.table);
 
   return (
-    <table className={styled[tableClasses]}>
+    <table className={tableClasses}>
       <TableHead columns={columns} /> 
       <TableBody columns={columns} data={data} />
     </table>
