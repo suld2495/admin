@@ -1,0 +1,39 @@
+
+$sub-menu-background: #3e3e3e;
+$main-menu-color: #939392;
+$sub-menu-color: #cfcfcf;
+
+.menu {
+  .menu_item {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+
+    &.main_menu_item {
+      border-bottom-color: #3f403b;
+      
+      span {
+        color: $main-menu-color;
+      }
+    }
+
+    &.sub_menu_item {
+      border-bottom-color: #454545;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      a {
+        color: $sub-menu-color;
+        background-color: $sub-menu-background;
+      }
+    }
+
+    span, a {
+      height: 39px;
+      display: flex;
+      align-items: center;
+      padding-left: 27px;
+    }
+  }
+}
