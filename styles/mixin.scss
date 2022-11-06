@@ -1,4 +1,4 @@
-@mixin button_type_common($padding: 8px 28px) {
+@mixin button_type_common($padding: 10px 35px) {
   display: inline-block;
   padding: $padding;
   border-radius: $component-border-radius;
