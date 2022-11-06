@@ -11,11 +11,13 @@ $font-size: 13px;
   background-color: $main-menu-background;
 
   .menu_item {
+    min-height: 39px;
     border-bottom-width: 1px;
     border-bottom-style: solid;
     border-bottom-color: #3f403b;
     overflow: hidden;
     cursor: pointer;
+    box-sizing: border-box;
 
     span {
       position: relative;
@@ -32,13 +34,13 @@ $font-size: 13px;
     }
 
     &.active {
-      span::after {
+      > span::after {
         width: 6px;
         height: 6px;
         transform: rotate(45deg);
       }
 
-      .menu {
+      > .menu {
         display: block;
       }
     }

@@ -22,19 +22,18 @@ const MenuItem = ({ title, link, children }: Menu) => {
     
 
     const ul = ref.current;
-    ul.style.height = '0';
+    ul.style.height = active ? `${ul.childElementCount * 39}px` : '0';
     ul.style.display = 'block';
     ul.style.transition = 'height .3s ease';
     
     setTimeout(() => {
-      ul.style.height = '100px';
+      ul.style.height = active ? '0' : `${ul.childElementCount * 39}px`;
+      setActive(!active);
     });
 
     ul.addEventListener('transitionend', () => {
       ul.removeAttribute('style');
     }, { once: true });
-
-    setActive(!active);
   }
 
   return (
