@@ -1,7 +1,19 @@
 @import '../styles/globals.scss';
 
 .div {
-  background-color: $main-color;
-  width: 300px;
-  height: 300px;
+  padding: 50px 25px;
+
+  .selectBoxes {
+    display: flex;  
+    gap: 10px;
+    margin-top: 40px;
+  }
+
+  .table {
+    margin-top: 40px;
+  }
+
+  .buttons {
+    margin-top: 40px;
+  }
 }
