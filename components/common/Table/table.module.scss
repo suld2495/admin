@@ -1,8 +1,8 @@
 $table-border-color: #D7DCE0; 
 $table-background-color: #FDFDFD; 
 
-$table-head-height: 33px;
-$table-body-height: 40px;
+$table-head-height: 40px;
+$table-body-height: 48px;
 
 $table-head-font-weight: bold;
 $table-head-font-size: 1.3rem;
@@ -48,6 +48,11 @@ $table-body-border-color: #E3E3E3;
       &.right {
         text-align: right;
       }
+    }
+
+    &.nodata {
+      text-align: center;
+      height: 100px;
     }
   }
 }

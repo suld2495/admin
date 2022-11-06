@@ -44,9 +44,13 @@ const TableBody = ({ columns, data }: { columns: Column<RowData>[], data: RowDat
   return (
     <>
       <tbody>
-        {data?.map((row, index) => (
+        {data?.length ? data?.map((row, index) => (
           <TableRow key={index} row={row} columns={columns} />
-        ))}
+        )): (
+          <tr className={composeClasses(styled.body, styled.nodata)}>
+            <td colSpan={columns.length}>데이터가 존재하지 않습니다.</td>
+          </tr>
+        )}
       </tbody>
     </>
   )
