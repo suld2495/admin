@@ -1,0 +1,12 @@
+@import '@/styles/globals.scss';
+
+$button-color: #fff;
+
+.button {
+  @include button_type_common;
+  
+  background-color: $main-color;
+  border: none;
+  color: $button-color;
+  appearance: none;
+}
