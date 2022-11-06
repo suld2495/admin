@@ -1,0 +1,36 @@
+$header-font-size: 1.3rem;
+
+.header {
+  width: 100%;
+  height: 48px;
+  padding: 0 50px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #ebebeb;  
+  font-size: $header-font-size;
+
+  display: flex;
+  justify-content: flex-end;
+
+  .right {
+    display: flex;
+
+    > div {
+      display: flex;
+      align-items: center;
+    }
+
+    > div:nth-child(1) {
+      margin-right: 30px;
+      color: #696969;
+    }
+
+    > div:nth-child(2) {
+      margin-right: 150px;
+      color: #c3c3c3;
+    }
+
+    > div:nth-child(3) {
+      color: #747474;
+    }
+  }
+}
