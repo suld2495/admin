@@ -1,0 +1,44 @@
+.footer {
+  height: 100px;
+  padding: 0 50px;
+  background-color: #505155;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .copyright {
+    color: #a1a1a1;
+    font-size: 1.4rem;
+  }
+
+  > div:last-child {
+    font-size: 15px;
+    display: flex;
+    gap: 50px;
+    font-weight: bold;
+
+    > div:first-child {
+      display: flex;
+      gap: 10px;
+      color: #a1a1a1;
+
+      > span {
+        letter-spacing: -1px;
+      }
+
+      > div {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        color: #fff;
+        font-size: 1.6rem;
+      }
+    }
+
+    > div:last-child {
+      display: flex;
+      align-items: center;
+      color: #fff;
+    }
+  }
+}
