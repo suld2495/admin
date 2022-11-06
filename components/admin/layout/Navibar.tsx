@@ -37,7 +37,7 @@ export default function Navibar() {
       <div>
         <div className={styled.empty}></div>
         <Menu list={menuList} />
-        <div className={styled.logout}></div>
+        <div className={styled.logout}>로그아웃</div>
       </div>
     </nav>
   )
