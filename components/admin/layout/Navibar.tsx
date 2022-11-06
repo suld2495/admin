@@ -10,7 +10,13 @@ export default function Navibar() {
         {
           id: 2,
           title: '서브 메뉴1',
-          link: '서브 링크1',
+          children: [
+            {
+              id: 4,
+              title: '서브 서브 메뉴1',
+              link: '서브 링크1',
+            }
+          ]
         },
         {
           id: 3,
@@ -18,6 +24,11 @@ export default function Navibar() {
           link: '서브 링크2',
         }
       ]
+    },
+    {
+      id: 5,
+      title: '메인 메뉴2',
+      link: 'test'
     }
   ];
 

@@ -1,5 +1,7 @@
+import React from 'react';
 import Link from "next/link";
 import styled from './menu.module.scss';
+import { composeClasses } from 'utils/composeClasses';
 
 interface Menu {
   id: number;
@@ -13,12 +15,34 @@ interface MenuProps {
 }
 
 const MenuItem = ({ title, link, children }: Menu) => {
+  const [active, setActive] = React.useState(false);
+  const ref = React.createRef<HTMLUListElement>();
+  const toggle = () => {
+    if (!ref.current) return;
+    
+
+    const ul = ref.current;
+    ul.style.height = '0';
+    ul.style.display = 'block';
+    ul.style.transition = 'height .3s ease';
+    
+    setTimeout(() => {
+      ul.style.height = '100px';
+    });
+
+    ul.addEventListener('transitionend', () => {
+      ul.removeAttribute('style');
+    }, { once: true });
+
+    setActive(!active);
+  }
+
   return (
-    <li className={styled.menu_item}>
+    <li className={composeClasses(styled.menu_item, active ?  styled.active : '')}>
       {children && (
         <>
-          <span>{title}</span>
-          <MenuList list={children} />
+          <span onClick={toggle}>{title}</span>
+          <MenuList list={children} ref={ref} />
         </>
       )}
 
@@ -29,18 +53,18 @@ const MenuItem = ({ title, link, children }: Menu) => {
   )
 };
 
-const MenuList = ({ list }: { list: Menu[] }) => {
+const MenuList = React.forwardRef<HTMLUListElement, { list: Menu[] }>(({ list }, ref) => {
   return (
     <>
-      <ul className={styled.menu}>
+      <ul className={styled.menu} ref={ref}>
         {list.map((menuItem) => (
           <MenuItem key={menuItem.id} {...menuItem} />
         ))}
       </ul>
-      
     </>
   )
-}
+});
+MenuList.displayName = 'MenuList';
 
 export default function Menu({ list }: MenuProps) {
   return (

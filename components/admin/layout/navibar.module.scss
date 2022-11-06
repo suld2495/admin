@@ -1,11 +1,11 @@
 @import './layout.module.scss';
 
-$main-menu-background: #2d2d25;
+$nav-background: #2d2d25;
 $font-size: 14px;
 
 .nav {
   width: 173px;
-  background-color: $main-menu-background;
+  background-color: $nav-background;
   font-size: $font-size;
 
   .empty {
