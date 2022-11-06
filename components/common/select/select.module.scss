@@ -17,13 +17,15 @@ $select-color: #bfbfbf;
   }
 
   span {
-    @include button_type_common(8px 0 8px 18px);
+    @include button_type_common(12px 0 12px 18px);
 
     position: relative;
-    width: 120px;
-    border: 2px solid #f9f9f9;
+    width: 140px;
+    min-height: 40px;
+    border: 2px solid #ececec;
     background-color: #fff;
     color: $select-color;
+    box-sizing: border-box;
 
     &::after {
       @include virtual_element;
