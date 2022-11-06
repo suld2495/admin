@@ -4,12 +4,19 @@ $nav-background: #2d2d25;
 $font-size: 14px;
 
 .nav {
-  width: 173px;
+  width: 200px;
   background-color: $nav-background;
   font-size: $font-size;
 
   .empty {
     height: $header-height;
     background-color: #0067b6;
+  }
+
+  .logout {
+    position: absolute;
+    left: 20px;
+    bottom: 100px;
+    color: #fff;
   }
 }
