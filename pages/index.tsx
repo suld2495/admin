@@ -1,11 +1,18 @@
+import React from 'react';
 import Title from 'components/admin/common/title/Title';
 import Button from 'components/common/button/Button';
+import Pagination from 'components/common/pagination/Pagination';
 import Select from 'components/common/select/Select';
 import Table from 'components/common/table/Table';
 import type { NextPage } from 'next'
 import styled from './index.module.scss';
 
 const Home: NextPage = () => {
+  const [page, setPage] = React.useState(1);
+  const handleChange = (page: number) => {
+    setPage(page);
+  };
+
   return (
     <div className={styled.div}>
       <Title title='기업회원목록'/>
@@ -54,6 +61,11 @@ const Home: NextPage = () => {
       />
       <div className={styled.buttons}>
         <Button>선택삭제</Button>
+        <Pagination
+          page={page} 
+          total={101}
+          onChange={handleChange}
+        />
       </div>
     </div>
   )
