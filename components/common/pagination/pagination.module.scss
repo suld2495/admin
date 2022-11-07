@@ -1,0 +1,70 @@
+@import '@/styles/globals.scss';
+
+.pages {
+  font-size: $default-font-size;
+  display: flex;
+  gap: 10px;
+
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .page {
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    color: #000;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.current {
+      background-color: $main-color;
+      color: #fff;
+    }
+  }
+
+  li:not(.page) {
+    width: 20px;
+    line-height: 0;
+    font-size: 0;
+    text-indent: -9999px;
+    
+    position: relative;
+  }
+
+  li:not(.page):before,
+  .first:after,
+  .last:after {
+    @include angle_bracket;
+  }
+
+  .first:before,
+  .prev:before,
+  .first:after {
+    transform: rotate(-45deg);
+  }
+
+  .last:before,
+  .next:before,
+  .last:after {
+    transform: rotate(135deg);
+  }
+
+  .first:after {
+    left: 2px;
+  }
+
+  .last:after {
+    right: 2px;
+  }
+
+  .disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+  }
+}

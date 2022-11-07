@@ -24,3 +24,17 @@
   justify-content: center;
   align-items: center;
 }
+
+@mixin angle_bracket($width: 8px, $height: 8px, $border-width: 1px) {
+  content: '';
+  position: absolute;
+  width: $width;
+  height: $height;
+  border-left-width: $border-width;
+  border-left-style: solid;
+  border-left-color:  #000;
+
+  border-top-width: $border-width;
+  border-top-style: solid;
+  border-top-color:  #000;
+}
