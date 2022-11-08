@@ -3,7 +3,7 @@ import { composeClasses } from 'utils/composeClasses';
 import styled from './checkbox.module.scss';
 
 interface CheckboxProps {
-  checked: boolean;
+  checked?: boolean;
   onChange: (checked: boolean) => void;
 }
 
