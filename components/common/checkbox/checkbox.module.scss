@@ -1,0 +1,37 @@
+@import '@/styles/globals.scss';
+
+.checkbox {
+  @include flex_center;
+
+  width: 15px;
+  height: 15px;
+  border: 1px solid rgb(216, 216, 216);
+  border-radius: 2px;
+  background-color: #fff;
+  cursor: pointer;
+
+  &.check {
+    border-color: $main-color;
+    box-shadow: 0 0 2px rgb(107, 107, 107);
+  }
+
+  &:after {
+    @include virtual_element;
+
+    width: 4px;
+    height: 8px;
+    border-bottom: 2px solid rgb(216, 216, 216);
+    border-right: 2px solid rgb(216, 216, 216);
+    transform: rotate(40deg) translate(-1px, -1px);
+    transition: all .3s ease;
+  }    
+
+  &.check:after {
+    border-bottom-color: $main-color;
+    border-right-color: $main-color;
+  }
+
+  input {
+    display: none;
+  }
+}
