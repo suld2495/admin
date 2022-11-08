@@ -1,5 +1,5 @@
 import React from 'react';
-import { TableContext } from '../Table';
+import { RowData, TableContext } from '../Table';
 
 export interface Action {
   type: 'removeAll' | 'checkAll' | 'toggleCheck';
@@ -28,7 +28,7 @@ const reducer = (state: string[], action: Action) => {
 }
 
 
-const useCheckbox = (): [string[], () => void, () => void, (id: string) => void] => {
+const useCheckbox = (): [string[], (data: RowData[]) => void, () => void, (id: string) => void] => {
   const [checkedList, dispatch] = React.useReducer(reducer, []);    
   const { data } = React.useContext(TableContext);
 
@@ -36,9 +36,9 @@ const useCheckbox = (): [string[], () => void, () => void, (id: string) => void]
     dispatch({ type: 'removeAll' });
   }
 
-  const onCheckAll = React.useCallback(() => {
+  const onCheckAll = (data: RowData[]) => {
     dispatch({ type: 'checkAll', payload: data.map(({ id }) => id as string) });
-  }, [data]);
+  };
 
   const onToggleCheck = (id: string) => {
     dispatch({ type: 'toggleCheck', payload: id });

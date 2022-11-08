@@ -11,7 +11,7 @@ interface Column<RowData extends object> {
   align?: string;
 }
 
-interface RowData {
+export interface RowData {
   [key: string]: string | React.ReactNode;
 }
 
@@ -20,7 +20,7 @@ interface ContextValue {
   columns: Column<RowData>[],
   checkedList: string[],
   selection: boolean;
-  onCheckAll: () => void, 
+  onCheckAll: (data: RowData[]) => void, 
   onRemoveAllCheck: () => void
   onToggleCheck: (id: string) => void;
 }
@@ -66,7 +66,9 @@ const TableRow = ({ row }: { row: RowData }) => {
     <>
       <tr className={styled.body}>
         {selection ? (
-          <Checkbox onChange={handleCheckboxChange} checked={checkedList.includes(row.id)} />
+          <td className={styled.center}>
+            <Checkbox onChange={handleCheckboxChange} checked={checkedList.includes(row.id as string)} />
+          </td>
         ) : null}
         {columns.map(({ field, align }) => (
           <td className={composeClasses(styled[align || 'left'])} key={field}>{row[field]}</td>
@@ -102,18 +104,19 @@ const AllCheckbox = () => {
     setCheck(checkedList.length === data.length);
   }, [checkedList, data]);
 
-  const handleChange = () => {
+  const handleChange = React.useCallback(() => {
     const changedCheck = !check;
     setCheck(changedCheck);
 
     if (changedCheck) {
-      onCheckAll();
+      onCheckAll(data);
     } else {
       onRemoveAllCheck();
     }
-  }
+  }, [data, check, onCheckAll, onRemoveAllCheck]);
+
   return (
-    <Checkbox onChange={handleChange} />
+    <Checkbox onChange={handleChange} checked={check} />
   )
 };
 
