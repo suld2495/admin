@@ -18,9 +18,8 @@ export default function Checkbox({ checked = false, onChange }: CheckboxProps) {
   return (
     <label
       className={composeClasses(styled.checkbox, check ? styled.check : '')}
-      onChange={handleChange}
     >
-      <input type="checkbox" checked={check} />
+      <input type="checkbox" checked={check} onChange={handleChange} />
     </label>
   )
 };
