@@ -17,7 +17,7 @@ const reducer = (state: string[], action: Action) => {
     case 'toggleCheck':
       const id = action.payload;
 
-      if (typeof id !== 'string') throw Error();
+      if (typeof id !== 'number') throw Error();
 
       return state.includes(id)
         ? state.filter((check) => check !== id)
