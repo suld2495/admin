@@ -12,7 +12,7 @@ interface Column<RowData extends object> {
 }
 
 export interface RowData {
-  [key: string]: string | React.ReactNode;
+  [key: string]: any;
 }
 
 interface ContextValue {
@@ -88,7 +88,7 @@ const TableBody = () => {
           <TableRow key={index} row={row} />
         )): (
           <tr className={composeClasses(styled.body, styled.nodata)}>
-            <td colSpan={columns.length}>데이터가 존재하지 않습니다.</td>
+            <td colSpan={columns.length + 1}>데이터가 존재하지 않습니다.</td>
           </tr>
         )}
       </tbody>
