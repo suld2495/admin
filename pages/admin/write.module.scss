@@ -1,0 +1,23 @@
+@import 'styles/globals.scss';
+
+.form {
+  width: 500px;
+  margin: 30px auto;
+  background-color: #fff;
+  border: 1px solid #d4d4d4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  label {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    
+    span {
+      width: 80px;
+      font-size: $default-font-size;
+    }
+  }
+}
