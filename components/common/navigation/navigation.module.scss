@@ -1,0 +1,30 @@
+@import '@/styles/globals.scss';
+
+$main-menu-background: #2d2d25;
+$sub-menu-background: #3e3e3e;
+$main-menu-color: #9c9c9c;
+$sub-menu-color: #dedede;
+
+.navigation {
+  width: 300px;
+  height: 100%;
+  background-color: $main-menu-background;
+  position: fixed;
+  transition: transform 0.3s ease;
+  font-size: $default-font-size;
+  top: 0;
+
+  &.left {
+    left: 0;
+    transform: translateX(-100%);
+  }
+
+  &.right {
+    right: 0;
+    transform: translateX(100%);
+  }
+
+  &.open {
+    transform: translateX(0);
+  }
+}

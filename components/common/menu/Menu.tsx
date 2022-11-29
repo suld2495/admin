@@ -2,15 +2,16 @@ import React from 'react';
 import Link from "next/link";
 import styled from './menu.module.scss';
 import { composeClasses } from 'utils/composeClasses';
+import { CommonProps } from '../type';
 
-interface Menu {
+export interface Menu {
   id: number;
   title: string;
   link?: string;
   children?: Menu[];
 }
 
-interface MenuProps {
+export type MenuProps = CommonProps & {
   list: Menu[];
 }
 
@@ -65,10 +66,12 @@ const MenuList = React.forwardRef<HTMLUListElement, { list: Menu[] }>(({ list },
 });
 MenuList.displayName = 'MenuList';
 
-export default function Menu({ list }: MenuProps) {
+export default function Menu({ list, className = '', unStyled }: MenuProps) {
+  const menuClasses = composeClasses(className, unStyled ? '' : styled.menu_container);
+
   return (
-    <>
+    <div className={menuClasses}>
       <MenuList list={list} />
-    </>
+    </div>
   )
 }

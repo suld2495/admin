@@ -1,0 +1,73 @@
+@import '@/styles/globals.scss';
+
+$menu-height: 50px;
+$menu-background: #e7e7e7;
+$dropdown-menu-height: 30px;
+$dropdown-menu-background: #747474;
+$dropdown-menu-color: #fff;
+
+.dropdownNavigation {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+
+  .menu_container {
+    width: 100%;
+    background-color: $menu-background;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+
+    ul {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    li {
+      width: 100%;
+    }
+
+    a {
+      height: $menu-height;
+      font-size: $menu-font-size;
+      color: $default-font-color;
+    } 
+  }
+
+  .dropdown {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: $dropdown-menu-background;
+    position: absolute;
+    top: $menu-height;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+
+    .dropdown_container {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+
+      & > div {
+        flex: 1;
+      }
+    }
+
+    a {
+      padding: 10px 0;
+      font-size: $default-font-size;
+      height: $dropdown-menu-height;
+      color: $dropdown-menu-color;
+    }
+  }
+
+  a {
+    width: 100%;
+    @include flex_center;
+  }
+}
