@@ -1,0 +1,44 @@
+@import '@/styles/globals.scss';
+
+.login {
+  width: 100%;
+  height: 100%;
+
+  font-size: $main-title-size;
+  @include flex_center;
+
+  > div {
+    width: 400px;
+    padding: 20px;
+    border: 1px solid #111;
+
+    h1 {
+      margin-bottom: 50px;
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn_container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      button {
+        border-radius: 5px;
+        height: 50px;
+      }
+
+      .join_btn {
+        background-color: #fff;
+        border: 1px solid $main-color;
+        color: $main-color;
+      }
+    }
+  }
+}

@@ -1,41 +1,42 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["referentialIntegrity"]
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
   referentialIntegrity = "prisma"
 }
 
 model User {
-  userId Int @id @default(autoincrement())
-  username String
-  type Int @default(0)
+  userId    String   @id
+  username  String
+  password  String
+  type      Int      @default(0)
   createdAt DateTime @default(now())
-  posts Info[]
+  posts     Info[]
 }
 
 model Info {
-  postId Int @id @default(autoincrement())
-  user User @relation(fields: [userId], references: [userId])
-  userId Int
-  title String
+  postId    Int       @id @default(autoincrement())
+  user      User      @relation(fields: [userId], references: [userId])
+  userId    String
+  title     String
   contents2 String?
   contents1 String?
   contents3 String?
   contents4 String?
   contents5 String?
-  createdAt DateTime @default(now())
+  createdAt DateTime  @default(now())
   updatedAt DateTime?
 }
 
 model Todo {
-  todoId Int @id @default(autoincrement())
-  title String
-  contents String
-  type Int @default(0)
-  createdAt DateTime @default(now())
+  todoId    Int       @id @default(autoincrement())
+  title     String
+  contents  String
+  type      Int       @default(0)
+  createdAt DateTime  @default(now())
   updatedAt DateTime?
 }
