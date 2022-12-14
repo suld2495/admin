@@ -3,16 +3,20 @@ import '../styles/globals.scss'
 import type { AppProps } from 'next/app'
 import AdminLayout from '../components/admin/layout/AdminLayout'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-
-const queryClient = new QueryClient()
+import React from 'react'
+import AuthLayout from 'components/layout/AuthLayout'
 
 function MyApp({ Component, pageProps }: AppProps) {
-
+  const [queryClient] = React.useState(new QueryClient());
+  
+  
   return (
     <QueryClientProvider client={queryClient}>
-      <AdminLayout>
-        <Component {...pageProps} />
-      </AdminLayout>
+      <AuthLayout>
+        <AdminLayout>
+          <Component {...pageProps} />
+        </AdminLayout>
+      </AuthLayout>
     </QueryClientProvider>
   );
 }

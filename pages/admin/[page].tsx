@@ -7,7 +7,7 @@ import Table from 'components/common/table/Table';
 import type { NextPage } from 'next'
 import styled from '../index.module.scss';
 import { useQuery } from '@tanstack/react-query';
-import { fetchPosts } from 'services/post.api';
+import { fetchPosts } from 'services/api/posts.api';
 
 const Home: NextPage = () => {
   const [page, setPage] = React.useState(1);
