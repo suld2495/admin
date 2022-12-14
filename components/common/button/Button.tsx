@@ -9,6 +9,7 @@ type ButtonProps = CommonProps & {
   href?: string;
   width?: string;
   height?: string;
+  onClick?: React.MouseEventHandler
 }
 
 export default function Button({ 
@@ -17,7 +18,8 @@ export default function Button({
   unStyled = false, 
   className = '', 
   width = '200px', 
-  height = '30px'
+  height = '30px',
+  onClick = () => {}
 }: ButtonProps) {
   const selectClasses = composeClasses(className, unStyled ? '' : styled.button);
   const style = React.useMemo(() => ({ width, height }), [width, height]);
@@ -29,7 +31,7 @@ export default function Button({
           <a className={selectClasses} style={style}>{children}</a>
         </Link>
       ) : (
-        <button className={selectClasses} style={style}>{children}</button>
+        <button className={selectClasses} style={style} onClick={onClick}>{children}</button>
       )}
     </>
   )

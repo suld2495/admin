@@ -6,18 +6,28 @@ import { UserForm } from "types/user";
 import styled from './login.module.scss';
 import useForm from 'hooks/useForm';
 import Button from 'components/common/button/Button';
-import useLogin from 'hooks/useLogin';
+import useAuth from 'hooks/useAuth';
 
 const Login: NextPage = () => {
-  const [login] = useLogin()
-  const [form, handleChanage] = useForm<UserForm>({
+  const { login } = useAuth()
+  const [form, handleChange] = useForm<UserForm>({
     userId: '',
     password: ''
   });
 
+  const validate = (form: UserForm) => {
+    return (['userId', 'password'] as (keyof UserForm)[]).every((value) => form[value]);
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
-    login(form);
     e.preventDefault();
+
+    if (!validate(form)) {
+      alert('아이디 또는 비밀번호를 확인해 주세요.');
+      return;
+    }
+
+    login(form);
   }
 
   return (
@@ -28,16 +38,16 @@ const Login: NextPage = () => {
         <form onSubmit={handleSubmit}>
           <Input 
             name="userId"
-            value={form.userId}
+            value={form.userId!}
             placeholder="아이디를 입력해주세요" 
-            onChange={handleChanage} 
+            onChange={handleChange} 
           />
           <Input 
             name="password" 
             type="password"
-            value={form.password} 
+            value={form.password!} 
             placeholder="비밀번호를 입력해주세요"
-            onChange={handleChanage}
+            onChange={handleChange}
           />
           
           <div className={styled.btn_container}>
