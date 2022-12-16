@@ -3,7 +3,8 @@ const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
   serverRuntimeConfig: {
-    secret: process.env.SECRET
+    secret: process.env.SECRET,
+    refresh: process.env.REFRESH
   }
 }
 

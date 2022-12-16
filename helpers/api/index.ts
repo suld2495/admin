@@ -6,12 +6,13 @@ import util from 'util';
 export type NextConfig = {
   serverRuntimeConfig: {
     secret: string;
+    refresh: string;
   }
 }
 
 const { serverRuntimeConfig } = getConfig() as NextConfig;
 
-export const jwtMiddleware = (req: NextApiRequest, res: NextApiResponse) => {
+export const jwtMiddleware = <Request extends NextApiRequest, D>(req: Request, res: NextApiResponse<D>) => {
   const middleware = expressjwt({ 
     secret: serverRuntimeConfig.secret, 
     algorithms: ['HS256']

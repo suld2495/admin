@@ -1,10 +1,11 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 import { SITE_URL } from "lib/constants";
 import { Message } from "types/message";
 
-type HttpError = {
+export type HttpError = {
   response: {
-    data: Message
+    data: Message,
+    status: number
   }
 }
 
@@ -18,15 +19,22 @@ const newAixos = axios.create({
 newAixos.defaults.baseURL = SITE_URL;
 newAixos.defaults.withCredentials = true;
 
+const handleResponse = (error: AxiosError) => {
+  return Promise.reject(error.response);
+  // if ([401, 403].includes(error.response.status)) {
+  //   authApi.logout();
+  // }
+
+  // return Promise.reject(error.response.data.message);
+};
+
 const get = <T = any, R = AxiosResponse<T>, D = any>(url: string, config?: AxiosRequestConfig<D>): Promise<R> => {
   return newAixos
     .get(url, config)
     .then((response) => {
       return response.data;
     })
-    .catch((error: HttpError) => {
-      throw new Error(error.response.data.message);
-    });
+    .catch(handleResponse);
 };
 
 const post = <T = any, R = AxiosResponse<T>, D = any>(
@@ -38,9 +46,7 @@ const post = <T = any, R = AxiosResponse<T>, D = any>(
     .then((response) => {
       return response.data;
     })
-    .catch((error: HttpError) => {
-      throw new Error(error.response.data.message);
-    });
+    .catch(handleResponse);
 };
 
 const put = <T = any, R = AxiosResponse<T>, D = any>(
@@ -52,13 +58,16 @@ const put = <T = any, R = AxiosResponse<T>, D = any>(
     .then((response) => {
       return response.data;
     })
-    .catch((error: HttpError) => {
-      throw new Error(error.response.data.message);
-    })
+    .catch(handleResponse)
 };
 
-const delete = () => {
-
+const del = <T = any, R = AxiosResponse<T>, D = any>(url: string, config?: AxiosRequestConfig<D>): Promise<R> => {
+  return newAixos
+    .delete(url, config)
+    .then((response) => {
+      return response.data;
+    })
+    .catch(handleResponse)
 }
 
 export const setAuthorization = (accessToken: string) => {
@@ -68,7 +77,8 @@ export const setAuthorization = (accessToken: string) => {
 const http = {
   get,
   post,
-  put
+  put,
+  del
 }
 
 export default http;

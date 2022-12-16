@@ -4,11 +4,15 @@ import axios from ".";
 
 export type UserRespone = {
   user: User;
-  accessToken: string;
+  token: string;
 }
 
 export const login = (form: UserForm): Promise<UserRespone> => {
   return axios.post('api/users/authenticate', form);
+};
+
+export const logout = () => {
+  return axios.del('api/users/authenticate');
 };
 
 export const getUser = (): Promise<UserRespone> => {

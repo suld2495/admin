@@ -23,6 +23,8 @@ const handler = async (req: NextLoginRequest, res: NextApiResponse<LoginResponse
   switch (req.method) {
     case 'POST':
       return authenticate();
+    case 'DELETE':
+      return logout();
     default:
       return res.status(405).end(`Method ${req.method} Not Allowed`);
   }
@@ -41,7 +43,7 @@ const handler = async (req: NextLoginRequest, res: NextApiResponse<LoginResponse
 
     try {
       const token = jwt.sign(user, serverRuntimeConfig.secret, { expiresIn: ACCESS_TOKEN_EXPIRED });
-      const refreshToken = jwt.sign({ id: user.id }, serverRuntimeConfig.secret, { expiresIn: REFRESH_TOKEN_EXPIRED });
+      const refreshToken = jwt.sign({ id: user.id }, serverRuntimeConfig.refresh, { expiresIn: REFRESH_TOKEN_EXPIRED });
 
       res.setHeader('Set-Cookie', `token=${refreshToken}; path=/;`)
       res.status(200).json({
@@ -56,6 +58,9 @@ const handler = async (req: NextLoginRequest, res: NextApiResponse<LoginResponse
     }
   }
   
+  async function logout() {
+    res.status(200).end();
+  }
 };
 
 export default apiHandler(handler);

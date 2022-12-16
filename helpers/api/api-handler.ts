@@ -3,7 +3,7 @@ import { jwtMiddleware } from ".";
 import errorHandler from "./error-handler";
 
 const apiHandler = (handler: NextApiHandler) => {
-  return async (req: NextApiRequest, res: NextApiResponse) => {
+  return async <Request extends NextApiRequest, D>(req: Request, res: NextApiResponse<D>) => {
     try {
       await jwtMiddleware(req, res);
       await handler(req, res);

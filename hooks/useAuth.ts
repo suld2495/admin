@@ -20,8 +20,8 @@ export default function useAuth(): AuthResponse {
   const { data } = useQuery({
     queryKey: userKey.user,
     queryFn: async (): Promise<User> => {
-      const { user, accessToken } = await authApi.getUser();
-      setAuthorization(accessToken);
+      const { user, token } = await authApi.getUser();
+      setAuthorization(token);
       return user;
     },
     staleTime: AUTH_EXPIRED,
@@ -35,16 +35,12 @@ export default function useAuth(): AuthResponse {
   const loginMutation = useMutation((form: UserForm) => {
     return authApi.login(form);
   }, {
-    onSuccess({ user, accessToken }: authApi.UserRespone) {
-      setAuthorization(accessToken);
+    onSuccess({ user, token }: authApi.UserRespone) {
+      setAuthorization(token);
       queryClient.setQueryData(userKey.user, user);
 
       router.push(router.query.returnUrl as string || '/');
-    },
-
-    onError(code: Error) {
-      alert(code.message);
-    }, 
+    }
   });
 
   const logoutMutation = useMutation(() => {
@@ -54,6 +50,6 @@ export default function useAuth(): AuthResponse {
   return {
     user: data, 
     login: loginMutation.mutate,
-    logout: ''
+    logout: logoutMutation.mutate
   };
 }
